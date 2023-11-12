@@ -1,4 +1,65 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {gsap} from 'gsap'
+import { onMounted } from 'vue';
+
+onMounted(() => {
+    gsap.from(".logo", {
+      duration:1.6,
+    delay:0.2,
+    opacity:0,
+    y:20,
+    ease:"expo.out",
+  })
+
+  gsap.from(".search", {
+    duration:1.6,
+    delay:0.2,
+    opacity:0,
+    y:20,
+    ease:"expo.out",
+  })
+
+  gsap.from(".img", {
+    duration:3,
+    delay:0.7,
+    opacity:0,
+    y:20,
+    ease:"expo.out",
+  })
+
+  gsap.from(".bottom-bar", {
+    duration:2,
+    delay:2,
+    opacity:0,
+    x: -40,
+    ease:"expo.out",
+  })
+
+  gsap.from(".icn", {
+    duration:2,
+    delay:2.5,
+    opacity:0,
+    y:40,
+    ease:"expo.out",
+  })
+
+  gsap.from(".title span", {
+    duration:3,
+    delay:3,
+    opacity:0,
+    x: -100,
+    ease:"expo.out",
+  })
+  gsap.from(".media ul li", {
+    duration:3,
+    delay:3,
+    opacity:0,
+    x: 50,
+    ease:"expo.out",
+  })
+})
+
+</script>
 
 <template>
   <main class="home-container w-full">
@@ -14,23 +75,22 @@
     </div>
 
     <!-- images -->
-    <!-- <div class="images absolute flex top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] grayscale-[1] hover:grayscale-[1]  "> -->
-    <div class="flex justify-center h-[75vh]">
-      <div class="images flex   m-auto">
+    <div class="flex justify-center items-center h-[75vh]">
+      <div class="images flex ">
       <div
-        class="img img-1 hover:grayscale-[1] w-44 h-96 m-8 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-1.jpg')]"
+        class="img img-1 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-1.jpg')]"
       ></div>
       <div
-        class="img img-2 hover:grayscale-[1] w-44 h-96 m-8  cursor-pointer scale-[1.4] scale-y-[1.6] bg-center bg-no-repeat bg-cover bg-[url('/img/img-2.jpg')]"
+        class="img img-2 hover:grayscale-[1] w-44 h-96 m-10  cursor-pointer scale-[1.4] bg-center bg-no-repeat bg-cover bg-[url('/img/img-2.jpg')]"
       ></div>
       <div
-        class="img img-3 hover:grayscale-[1] w-44 h-96 m-8 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-3.jpg')]"
+        class="img img-3 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-3.jpg')]"
       ></div>
       <div
-        class="img img-4 hover:grayscale-[1] w-44 h-96 m-8  cursor-pointer scale-[1.4] bg-center bg-no-repeat bg-cover bg-[url('/img/img-4.jpg')]"
+        class="img img-4 hover:grayscale-[1] w-44 h-96 m-10  cursor-pointer scale-[1.4] bg-center bg-no-repeat bg-cover bg-[url('/img/img-4.jpg')]"
       ></div>
       <div
-        class="img img-5 hover:grayscale-[1] w-44 h-96 m-8 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-5.jpg')]"
+        class="img img-5 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-5.jpg')]"
       ></div>
     </div>
     </div>
