@@ -9,7 +9,3 @@ import NavBar from '@/components/NavBar.vue'
         <NavBar />
   </main>
 </template>
-
-<style>
-
-</style>
