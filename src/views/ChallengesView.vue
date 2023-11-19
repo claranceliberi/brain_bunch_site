@@ -39,10 +39,11 @@ const active = ref(challenges.value.length - 1)
 const activeChallenge = computed(() => challenges.value[active.value])
 
 
+
 function handleSlides(index: number) {
     const activeChal = challenges.value[index]
-    challenges.value.splice(index, 1)
     challenges.value.push(activeChal)
+    challenges.value.splice(index, 1)
 }
 
 function startDescription(){
@@ -77,9 +78,31 @@ function startDescription(){
     y:20,
     ease:"expo.out",
   })
-
+  
+  animateChallengeCards()
 
   console.log('ahaa')
+}
+
+
+function animateChallengeCards(){
+
+    const totalWidth = getTotalWidthWithMargin(".challenge-card");
+    gsap.from(".challenge-card", {
+        duration:1,
+        x:totalWidth,
+    })
+}
+
+
+function getTotalWidthWithMargin(selector:string) {
+    const element = document.querySelector(selector) as HTMLElement;
+    const style = window.getComputedStyle(element);
+
+    const width = element.offsetWidth; // Width including padding and border
+    const margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight);
+
+    return width + margin;
 }
 
 </script>
@@ -106,12 +129,11 @@ function startDescription(){
                     </div>
                </template>
                </TransitionGroup>
-                <div class="challenges flex space-x-8 items-end justify-end flex-1 pb-4 translate-x-16">
-                    <div class=""
+                <div class="challenges flex items-end justify-end flex-1 pb-4 translate-x-16">
+                    <template 
                      v-for="(challenge, i) in challenges"
-                     @click="handleSlides(i)"
-                     :key="challenge.id">
-                        <div class="challenge-card h-80 w-52 rounded-xl flex relative items-end shadow-lg shadow-black/70 cursor-pointer" v-if="i != active">
+                     :key="challenge.id" >
+                        <div @click="handleSlides(i)"  class="challenge-card h-80 w-52 mx-4 rounded-xl flex relative items-end shadow-lg shadow-black/70 cursor-pointer" v-if="i !=active">
                             <div class="absolute bg-cover bg-center w-full h-full brightness-75 " :class="challenge.image"></div>
                             <div  class="absolute bg-cover bg-center w-full h-full brightness-75 " :class="`${challenge.image} bg-image-${challenge.id}`"></div>
                             <div class="text-white z-10 p-3 space-y-2">
@@ -120,7 +142,7 @@ function startDescription(){
                                 <div class="challenge--card__title capitalize font-bold text-2xl">{{ challenge.title }}</div>
                             </div>
                         </div>
-                    </div>
+                    </template>
                    
                 </div>
             </div>
