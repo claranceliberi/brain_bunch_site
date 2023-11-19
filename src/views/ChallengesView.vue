@@ -40,10 +40,15 @@ const activeChallenge = computed(() => challenges.value[active.value])
 
 
 
+
 function handleSlides(index: number) {
     const activeChal = challenges.value[index]
     challenges.value.push(activeChal)
     challenges.value.splice(index, 1)
+
+
+    replaceImageCoverInContainer(activeChal.id)
+
 }
 
 function startDescription(){
@@ -87,6 +92,13 @@ function startDescription(){
 
 function animateChallengeCards(){
 
+    // gsap.to(prevChallengeImageCover, {
+    //     duration:1,
+    //     opacity:0,
+    //     ease:'expo.out',
+    // })
+
+
     const totalWidth = getTotalWidthWithMargin(".challenge-card");
     gsap.from(".challenge-card", {
         duration:1,
@@ -94,6 +106,9 @@ function animateChallengeCards(){
         ease:'expo.out',
         stagger:0.2,
     })
+
+
+
 }
 
 
@@ -107,6 +122,21 @@ function getTotalWidthWithMargin(selector:string) {
     return width + margin;
 }
 
+function replaceImageCoverInContainer(challengeId:string){
+    const containerElement = document.querySelector('.container') as HTMLElement;
+    const prevChallengeCardId = active.value === 0 ? challenges.value.length - 1 : active.value - 1;
+    const prevChallengeImageCover = document.querySelector(`.cover-${challenges.value[prevChallengeCardId].id}`) as HTMLElement;
+
+    const imageCover = document.createElement('div');
+    imageCover.classList.add('bg-cover', 'bg-center', 'w-full', 'h-[100vh]', 'absolute', 'brightness-50', 'cover-'+challengeId, challenges.value.find(challenge => challenge.id === challengeId)?.image!);
+
+    containerElement.appendChild(imageCover);
+
+    // remove previous image cover
+    if(prevChallengeImageCover)
+        prevChallengeImageCover.remove();
+}
+
 </script>
 
 <template>
@@ -114,9 +144,9 @@ function getTotalWidthWithMargin(selector:string) {
         <!-- nav-section -->
         <!-- <NavBar /> -->
 
-        <div class=" flex items-end relative w-full h-[100vh]">
-            <div class=" bg-cover bg-center w-full h-[100vh] absolute brightness-50 " :class="challenges[active].image">
-            </div>
+        <div class=" flex items-end relative w-full h-[100vh] container">
+            <!-- <div class=" bg-cover bg-center w-full h-[100vh] absolute brightness-50 " :class="`${challenges[active].image} cover-${challenges[active].id}`">
+            </div> -->
 
 
             <div class="flex justify-stretch z-10 pt-10 relative w-full pb-32">
