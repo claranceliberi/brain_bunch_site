@@ -91,6 +91,8 @@ function animateChallengeCards(){
     gsap.from(".challenge-card", {
         duration:1,
         x:totalWidth,
+        ease:'expo.out',
+        stagger:0.2,
     })
 }
 
