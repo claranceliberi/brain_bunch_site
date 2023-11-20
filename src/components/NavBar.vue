@@ -100,11 +100,42 @@ const classes = computed(() => {
         </div>
         <div class="flex flex-col justify-center h-full">
           <ul >
-          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><NuxtLink to="/">Home</NuxtLink></li>
-          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><NuxtLink to="/about">About</NuxtLink></li>
-          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><NuxtLink to="/challenges">Challenges</NuxtLink></li>
+          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><router-link to="/">Home</router-link></li>
+          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><router-link to="/about">About</router-link></li>
+          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><router-link to="/challenges">Challenges</router-link></li>
         </ul>
         </div>
       </div>
     </div>
 </template>
+<style>
+
+.large-nav nav ul li a{
+	color: #fafafa;
+	text-decoration: none;
+	font-weight: 500;
+	position: relative;
+	opacity: 0;
+	pointer-events: none;
+}
+
+
+.large-nav ul li a:after{
+	content: '';
+	width: 100%;
+	position: absolute;
+	height: 3px;
+	border-radius: 5px;
+	background: #fff;
+	bottom: -10px;
+	left: 0;
+	transform-origin: left;
+	transition: transform .5s ease;
+	transform: scaleX(0);
+}
+
+.large-nav ul li a:hover:after{
+	transform: scaleX(1);
+}
+
+</style>

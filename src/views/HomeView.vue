@@ -75,7 +75,7 @@ onMounted(() => {
     </div> . 
 
     <!-- title -->
-    <div class="title">
+    <div class="title pointer-events-none">
       <span class="absolute text-[150px] uppercase text-white text-center w-full top-[40%] font-bold  tracking-[20px]">Brainy Bunch</span>
     </div>
 
