@@ -4,7 +4,6 @@ import { ref, computed, onMounted } from 'vue';
 import { gsap } from 'gsap'
 
 
-
 const challenges = ref([
     {
         id:1,
@@ -186,9 +185,6 @@ async function replaceImageCoverInContainer(challengeId:number, {onStart, onEnd}
     })
     // END: animate the image cover that is leaving
 
-
-
-
 }
 
 
@@ -201,9 +197,12 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
 </script>
 
 <template>
-  <main class="about">
+  <main class="about relative">
         <!-- nav-section -->
         <!-- <NavBar /> -->
+        <div class="fixed top-0 z-10 w-full">
+            <NavBar theme="light"/>
+        </div>
 
         <div class=" flex items-end relative w-full h-[100vh] container  overflow-hidden bg-black">
             <!-- <div class=" bg-cover bg-center w-full h-[100vh] absolute brightness-50 " :class="`${challenges[active].image} cover-${challenges[active].id}`">
