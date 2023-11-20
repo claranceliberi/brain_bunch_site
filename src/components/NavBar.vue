@@ -40,16 +40,18 @@ function handleNav(isOpen: boolean){
   navOpen.value = isOpen;
   console.log(tl)
   if(isOpen){
-    // if(tl.reversed()){
-    //   tl.play()
-    // }else{
-      tl.to('.large-nav',{right:0})
+    if(tl.reversed()){
+      tl.play()
+    }else{
+      tl
+      .set(".large-nav",{zIndex:100})
+      .to('.large-nav',{right:0})
       .to(".large-nav",{height:'100vh'},'-=.1')
       // .to(".nav", {display:'none'}, '-=.1')
       .from([".large-nav .logo", ".large-nav .close"],{opacity:0,x:-10},'-=.8')
       .from(".large-nav .link-text",{opacity:0,y:10,stagger:.2},'-=1')
       
-    // }
+    }
     console.log("opening");
     
   }else{
