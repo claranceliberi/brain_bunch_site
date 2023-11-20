@@ -89,7 +89,7 @@ const classes = computed(() => {
           
         </div>
       </nav>
-      <div class="large-nav m-auto h-[2rem] text-white  w-full absolute bg-black right-[-200vw] top-[50%] translate-y-[-50%]">
+      <div class="large-nav backdrop-blur-sm m-auto h-[2rem] text-white  w-full absolute bg-black/90 right-[-200vw] top-[50%] translate-y-[-50%]">
         <div class="div w-full flex justify-between py-4">
           <div class="logo text-xl font-bold uppercase py-[10px] px-12">
             <span>Brainy Bunch</span>
