@@ -72,7 +72,7 @@ onMounted(() => {
         class="img img-5 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-5.jpg')]"
       ></div>
     </div>
-    </div>
+    </div> . 
 
     <!-- title -->
     <div class="title">

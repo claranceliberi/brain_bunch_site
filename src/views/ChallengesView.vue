@@ -189,7 +189,7 @@ async function replaceImageCoverInContainer(challengeId:number, {onStart, onEnd}
 
 
 onMounted(() => {
-    console.log('mounted')
+    // console.log('mounted')
     const imageCover =  addImageToContainer(challenges.value[active.value])
 imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-none')
 })
@@ -200,9 +200,9 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
   <main class="about relative">
         <!-- nav-section -->
         <!-- <NavBar /> -->
-        <div class="fixed top-0 z-10 w-full">
-            <NavBar theme="light"/>
-        </div>
+      
+            <NavBar theme="light" class="absolute top-0 z-10 w-full"/>
+    
 
         <div class=" flex items-end relative w-full h-[100vh] container  overflow-hidden bg-black">
             <!-- <div class=" bg-cover bg-center w-full h-[100vh] absolute brightness-50 " :class="`${challenges[active].image} cover-${challenges[active].id}`">

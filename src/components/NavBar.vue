@@ -1,5 +1,5 @@
 <script lang="ts"  setup>
-import  { computed, onMounted } from 'vue';
+import  { computed, watchEffect, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 
 interface Props {
@@ -7,6 +7,7 @@ interface Props {
   theme?: 'light' | 'dark';
 }
 
+const navOpen = ref(false);
 
 const props = withDefaults(defineProps<Props>(),{
   transparent: false,
@@ -32,6 +33,31 @@ onMounted(() => {
 })
 
 
+const tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
+
+
+function handleNav(isOpen: boolean){
+  navOpen.value = isOpen;
+  console.log(tl)
+  if(isOpen){
+    // if(tl.reversed()){
+    //   tl.play()
+    // }else{
+      tl.to('.large-nav',{right:0})
+      .to(".large-nav",{height:'100vh'},'-=.1')
+      // .to(".nav", {display:'none'}, '-=.1')
+      .from([".large-nav .logo", ".large-nav .close"],{opacity:0,x:-10},'-=.8')
+      .from(".large-nav .link-text",{opacity:0,y:10,stagger:.2},'-=1')
+      
+    // }
+    console.log("opening");
+    
+  }else{
+    console.log('reversing');
+    
+    tl.reverse()
+  } 
+}
 const classes = computed(() => {
   let _classes = '';
 
@@ -44,18 +70,39 @@ const classes = computed(() => {
       break;
   }
 
+
   return _classes;
 })
 
 </script>
 <template>
-    <div class="navbar flex justify-between items-center w-[80%] my-10 mx-40 z-[1]" :class="`${classes}`">
-      <div class="logo text-xl font-bold uppercase py-[10px] px-12">
-        <span>Brainy Bunch</span>
-      </div>
-      <div class="search text-xl space-x-4 font-bold uppercase">
-        <ion-icon name="search"></ion-icon>
-        <ion-icon name="menu"></ion-icon>
+    <div  class="navbar flex flex-col  w-[100%] h-full z-50" :class="`${classes}`">
+      <nav class="flex justify-between items-center py-10 px-40 ">
+        <div class="logo text-xl font-bold uppercase py-[10px] px-12">
+          <span>Brainy Bunch</span>
+        </div>
+        <div class="search text-xl font-bold uppercase">
+          <span><ion-icon name="search" ></ion-icon></span>
+          <span class="cursor-pointer p-4" @click="handleNav(true)"> <ion-icon name="menu" class=" " ></ion-icon> </span>
+          
+        </div>
+      </nav>
+      <div class="large-nav m-auto h-[2rem] text-white  w-full absolute bg-black right-[-200vw] top-[50%] translate-y-[-50%]">
+        <div class="div w-full flex justify-between py-4">
+          <div class="logo text-xl font-bold uppercase py-[10px] px-12">
+            <span>Brainy Bunch</span>
+          </div>
+          <div>
+            <span class="close" @click="handleNav(false)"><ion-icon name="add-outline" class="text-white rotate-45 px-4 text-4xl cursor-pointer font-bold" ></ion-icon></span>
+          </div>
+        </div>
+        <div class="flex flex-col justify-center h-full">
+          <ul >
+          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><NuxtLink to="/">Home</NuxtLink></li>
+          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><NuxtLink to="/about">About</NuxtLink></li>
+          <li class="text-center text-5xl py-4 uppercase font-semibold cursor-pointer link-text"><NuxtLink to="/challenges">Challenges</NuxtLink></li>
+        </ul>
+        </div>
       </div>
     </div>
 </template>
