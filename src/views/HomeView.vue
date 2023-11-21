@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NavBar from '@/components/NavBar.vue'
 import {gsap} from 'gsap'
-import { onMounted } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 
 onMounted(() => {
 
@@ -46,6 +46,19 @@ onMounted(() => {
   })
 })
 
+const people = ref([
+  {name:`Nelly`,image:`bg-[url('/img/img-1.jpg')]`},
+  {name:`Liberi`,image:`bg-[url('/img/img-2.jpg')]`},
+  {name:`Lyza`,image:`bg-[url('/img/img-3.jpg')]`},
+  {name:`Eliel`,image:`bg-[url('/img/img-4.jpg')]`},
+  {name:`Melisa`,image:`bg-[url('/img/img-5.jpg')]`},
+  {name:`Mitali`,image:`bg-[url('/img/img-6.jpg')]`}
+])
+
+const filteredPeople  = computed(() => people.value.filter((person,index,array) => {
+  if(index !== array.length-1) return person
+}))
+
 </script>
 
 <template>
@@ -56,21 +69,10 @@ onMounted(() => {
     <!-- images -->
     <div class="flex justify-center items-center h-[75vh]">
       <div class="images flex ">
-      <div
-        class="img img-1 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-1.jpg')]"
+      <div v-for="person in filteredPeople" :key="person?.image"
+        class="img img-1 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover " :class="person?.image"
       ></div>
-      <div
-        class="img img-2 hover:grayscale-[1] w-44 h-96 m-10  cursor-pointer scale-[1.4] bg-center bg-no-repeat bg-cover bg-[url('/img/img-2.jpg')]"
-      ></div>
-      <div
-        class="img img-3 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-3.jpg')]"
-      ></div>
-      <div
-        class="img img-4 hover:grayscale-[1] w-44 h-96 m-10  cursor-pointer scale-[1.4] bg-center bg-no-repeat bg-cover bg-[url('/img/img-4.jpg')]"
-      ></div>
-      <div
-        class="img img-5 hover:grayscale-[1] w-44 h-96 m-10 cursor-pointer scale-[1.1] bg-center bg-no-repeat bg-cover bg-[url('/img/img-5.jpg')]"
-      ></div>
+      
     </div>
     </div> . 
 
