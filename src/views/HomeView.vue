@@ -93,7 +93,7 @@ onMounted(() => {
     <!-- social media -->
     <div class="media absolute right-[5%] bottom-[15%]">
       <ul class="p-3 ">
-        <li class="text-2xl"><a target="_blank" href="https://www.instagram.com/brainybunch9/"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li class="text-2xl animate-bounce"><a target="_blank" href="https://www.instagram.com/brainybunch9/"><ion-icon name="logo-instagram"></ion-icon></a></li>
       </ul>
     </div>
   </main>
