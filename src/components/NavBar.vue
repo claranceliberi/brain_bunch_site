@@ -1,5 +1,5 @@
 <script lang="ts"  setup>
-import  { computed, watchEffect, onMounted, ref } from 'vue';
+import  { computed, onMounted, ref } from 'vue';
 import gsap from 'gsap';
 
 interface Props {
