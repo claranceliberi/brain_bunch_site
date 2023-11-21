@@ -33,7 +33,7 @@ onMounted(() => {
 })
 
 
-const tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
+const tl = gsap.timeline({ defaults: { duration: 0.8, ease: 'expo.inOut' } });
 
 
 function handleNav(isOpen: boolean){

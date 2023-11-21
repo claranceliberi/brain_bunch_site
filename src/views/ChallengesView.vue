@@ -107,7 +107,7 @@ function getTotalWidthWithMargin(selector:string) {
 }
 
 function addImageToContainer(chal: typeof challenges.value[0]){
-    const containerElement = document.querySelector('.container') as HTMLElement;
+    const containerElement = document.querySelector('.slide-container') as HTMLElement;
 
     const imageCover = document.createElement('div');
     imageCover.classList.add('bg-cover', 'bg-center', 'absolute', 'brightness-90','rounded-xl' , 'cover-'+chal.id, chal.image);
@@ -197,19 +197,15 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
 </script>
 
 <template>
-  <main class="about relative">
+  <main class="about">
         <!-- nav-section -->
-        <!-- <NavBar /> -->
       
             <NavBar theme="light" class="absolute top-0 z-10 w-full"/>
     
 
-        <div class=" flex items-end relative w-full h-[100vh] container  overflow-hidden bg-black">
-            <!-- <div class=" bg-cover bg-center w-full h-[100vh] absolute brightness-50 " :class="`${challenges[active].image} cover-${challenges[active].id}`">
-            </div> -->
+        <div class=" flex items-end w-full h-[100vh] slide-container  overflow-hidden bg-black">
 
-
-            <div class="flex justify-stretch z-10 pt-10 relative w-full pb-32">
+            <div class="flex justify-stretch z-10 pt-10  w-full pb-32">
             
                <TransitionGroup @enter="startDescription" :css="false" appear>
                 <template v-for="(challenge,i) in challenges" :key="challenge.id">
