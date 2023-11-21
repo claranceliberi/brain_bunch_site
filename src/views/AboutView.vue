@@ -45,7 +45,7 @@ const active = ref<TextType>('mission')
             <button @click="active = 'problem'" class="py-2 px-4 border-2 border-solid border-black  rounded-full  transition-all duration-75" :class="{'bg-black text-white': active == 'problem'}">Problem</button>
             <button @click="active= 'solution'" class="py-2 px-4 border-2 border-solid border-black  rounded-full  transition-all duration-75" :class="{'bg-black text-white': active == 'solution'}">Solution</button>
           </div>
-          <div class="py-8 max-w-4xl">
+          <div class="py-8 max-w-3xl">
             <Transition name="slide-fade" mode="out-in">
               <div v-if="active == 'problem'">
                 <h1 class="pb-8 text-3xl font-semibold">{{ data.problem.title }}</h1>
