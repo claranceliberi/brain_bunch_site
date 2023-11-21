@@ -80,8 +80,8 @@ onMounted(() => {
     </div>
 
     <div class="side-icon absolute top-[45%] text-4xl flex justify-between w-full p-10">
-      <ion-icon name="arrow-dropleft-circle" class="icn"></ion-icon>
-      <ion-icon name="arrow-dropright-circle" class="icn"></ion-icon>
+      <span class="icn p-2 cursor-pointer"><ion-icon name="chevron-back-circle"></ion-icon></span>
+      <span class="icn p-2 cursor-pointer"><ion-icon name="chevron-forward-circle"></ion-icon></span>
     </div>
 
     <div class="bottom-bar w-full mx-auto mt-5 flex justify-around uppercase tracking-[4px]">
