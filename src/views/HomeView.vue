@@ -56,7 +56,8 @@ const people = ref([
 ])
 
 const filteredPeople  = computed(() => people.value.filter((person,index,array) => {
-  if(index !== array.length-1) return person
+  // if(index !== array.length-1) return person 
+  return true
 }))
 
 </script>
