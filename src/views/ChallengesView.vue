@@ -11,7 +11,10 @@ const challenges = ref([
         title:'Introduction',
         description:'We made a Think Tank introductory video, explicitly explaining our mission and vision.',
         image: 'bg-[url(/img/challenges/chal-1.jpg)]',
-        link:'https://youtu.be/xSXK7ps0uaA?feature=shared'
+        link: {
+            type: 'video',
+            url:'https://youtu.be/xSXK7ps0uaA?feature=shared'
+        }
     },
     {
         id:2,
@@ -19,7 +22,10 @@ const challenges = ref([
         title:'Discover Africa',
         description:'We made a video story of a brilliant electrical engineer who solves the problem of lack of electricity in one of the villages in Africa.',
         image: 'bg-[url(/img/challenges/chal-2.jpg)]',
-        link:'https://youtu.be/TMqmmfIIzqI?feature=shared',
+        link:{
+            type: 'video',
+            url:'https://youtu.be/TMqmmfIIzqI?feature=shared'
+        },
     },
     {
         id:3,
@@ -27,7 +33,10 @@ const challenges = ref([
         title:'Help Lab',
         description:'We collaborated with RBC in blood donation, giving blood to save lives.',
         image: 'bg-[url(/img/challenges/chal-3.jpg)]',
-        link:'https://youtu.be/QFQJgGj7EC4?feature=shared',
+        link: {
+            type: 'video',
+            url:'https://youtu.be/QFQJgGj7EC4?feature=shared'
+        },
     },
     {
         id: 4,
@@ -35,7 +44,10 @@ const challenges = ref([
         title:'Hunt for Treasure',
         description:'We conducted an in-person interview with MTN agents, analyzing the challenges they face and how they can be solved.',
         image: 'bg-[url(/img/challenges/chal-4.jpg)]',
-        link:'https://docs.google.com/presentation/d/1AS02EpxsGZCCjteiadgEbWHmDlNthp8bSHE4KJxjl00/edit#slide=id.gc6f889893_0_5'
+        link:{
+            type: 'slides',
+            url:'https://docs.google.com/presentation/d/1AS02EpxsGZCCjteiadgEbWHmDlNthp8bSHE4KJxjl00/edit#slide=id.gc6f889893_0_5'
+        }
     }
 ])
 const active = ref(challenges.value.length - 1)
@@ -60,6 +72,36 @@ function handleSlides(index: number) {
     }
     })
 
+    animateProgressBar(activeChal.id);
+
+}
+
+
+function goToNextSlide(){
+    const nextIndex = (active.value + 1) % challenges.value.length;
+    handleSlides(nextIndex)
+}
+
+function goToPrevSlide(){
+    const prevIndex = (active.value - 1) % challenges.value.length;
+    handleSlides(prevIndex)
+}
+
+function animateProgressBar(activeChallengeId:number){
+
+    const widthBase = getPrevChallengeId(activeChallengeId) === challenges.value.length ? 0 : getPrevChallengeId(activeChallengeId)
+
+    // gsap.set('.progress-inner-bar',)
+
+    console.log(activeChallengeId, getPrevChallengeId(activeChallengeId), widthBase, `${widthBase/challenges.value.length*100}%`)
+
+    gsap.fromTo('.progress-inner-bar',{
+        width:`${widthBase/challenges.value.length*100}%`,
+    },{
+        duration:1,
+        width:`${activeChallengeId/challenges.value.length*100}%`,
+        ease:'expo.out',
+    })
 
 }
 
@@ -74,17 +116,10 @@ function startDescription(){
   
   animateChallengeCards()
 
-  console.log('ahaa')
 }
 
 
 function animateChallengeCards(){
-
-    // gsap.to(prevChallengeImageCover, {
-    //     duration:1,
-    //     opacity:0,
-    //     ease:'expo.out',
-    // })
 
 
     const totalWidth = getTotalWidthWithMargin(".challenge-card");
@@ -123,7 +158,7 @@ function addImageToContainer(chal: typeof challenges.value[0]){
 
 async function replaceImageCoverInContainer(challengeId:number, {onStart, onEnd}: {onStart?: () => void, onEnd?: () => void} = {}){
     onStart && onStart()
-    const prevChallengeCardId = ((challengeId +2) % 4) +1     
+    const prevChallengeCardId = getPrevChallengeId(challengeId);    
     const newChallengeCard = document.querySelector(`.challenge-card-id__${challengeId}`) as HTMLElement;
     const newChallengeCardRect = newChallengeCard.getBoundingClientRect();
 
@@ -192,6 +227,10 @@ async function replaceImageCoverInContainer(challengeId:number, {onStart, onEnd}
 }
 
 
+function getPrevChallengeId(id:number){
+    return ((id +2) % 4) +1 
+}
+
 onMounted(() => {
     // console.log('mounted')
     const imageCover =  addImageToContainer(challenges.value[active.value])
@@ -209,7 +248,7 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
 
         <div class=" flex items-end w-full h-[100vh] slide-container  overflow-hidden bg-black">
 
-            <div class="flex justify-stretch z-10 pt-10  w-full pb-32">
+            <div class="flex justify-between z-10 pt-10  w-full pb-32">
             
                <TransitionGroup @enter="startDescription" :css="false" appear>
                 <template v-for="(challenge,i) in challenges" :key="challenge.id">
@@ -218,24 +257,41 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
                         <div class="challenge-number text-slate-100"> {{challenge.number}} </div>
                         <div class="challenge-title text-8xl font-bold capitalize text-white"> {{ challenge.title }} </div>
                         <div class="challenge-solution text-slate-100"> {{ challenge.description }} </div>
+                        <div class="text-white flex items-center space-x-6">
+                            <div class="bookmark"><button class="bg-yellow-400 w-10 h-10 flex items-center justify-center rounded-full text-2xl"><ion-icon name="bookmark-outline"></ion-icon></button></div>
+                            <div class="link"><a class="rounded-full px-4 py-2 border border-white" :href="challenge.link.url" target="_blank"> Open {{ challenge.link.type }}</a></div>
+                        </div>
                     </div>
                </template>
                </TransitionGroup>
-                <div class="challenges flex items-end justify-end flex-1 pb-4 translate-x-16">
-                    <template 
-                     v-for="(challenge, i) in challenges"
-                     :key="challenge.id" >
-                        <div @click="handleSlides(i)" :class="`challenge-card-id__${challenge.id}`"  class="challenge-card h-80 w-52 mx-4 rounded-xl flex relative items-end shadow-lg shadow-black/70 cursor-pointer" v-if="i !=active">
-                            <div class="absolute bg-cover bg-center w-full h-full brightness-75 " :class="`${challenge.image}`"></div>
-                            <div class="text-white z-10 p-3 space-y-2 text-description">
-                                <div class="challenge--card__line h-1 w-6 bg-white" ></div>
-                                <div class="challenge--card__number text-sm">{{ challenge.number }}</div>
-                                <div class="challenge--card__title capitalize font-bold text-2xl">{{ challenge.title }}</div>
+                <div class="challenges-wrapper">
+                    <div class="challenges flex items-end justify-end flex-1 pb-4 translate-x-16">
+                        <template 
+                        v-for="(challenge, i) in challenges"
+                        :key="challenge.id" >
+                            <div :class="`challenge-card-id__${challenge.id}`"  class="challenge-card h-80 w-52 mx-4 rounded-xl flex relative items-end shadow-lg shadow-black/70 cursor-pointer" v-if="i !=active">
+                                <div class="absolute bg-cover bg-center w-full h-full brightness-75 " :class="`${challenge.image}`"></div>
+                                <div class="text-white z-10 p-3 space-y-2 text-description">
+                                    <div class="challenge--card__line h-1 w-6 bg-white" ></div>
+                                    <div class="challenge--card__number text-sm">{{ challenge.number }}</div>
+                                    <div class="challenge--card__title capitalize font-bold text-2xl">{{ challenge.title }}</div>
+                                </div>
                             </div>
-                        </div>
-                    </template>
-                   
-                </div>
+                        </template>
+
+                    </div>
+                    <div class="challenges-progress flex items-center space-x-4 pl-20 pr-5">
+                            <div class="button text-white text-5xl  space-x-2">
+                                <!-- <button class="prev" @click="goToPrevSlide"> <ion-icon name="chevron-back-circle-outline"></ion-icon> </button> -->
+                                <button class="next" @click="goToNextSlide"> <ion-icon name="chevron-forward-circle-outline"></ion-icon> </button>
+                            </div>
+                            <div class="progress flex-1">
+                                <div class="progress-bar w-full h-1 bg-white rounded-full">
+                                    <div class="progress-inner-bar bg-yellow-300 h-full"></div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
             </div>
 
         </div>
