@@ -8,30 +8,34 @@ const challenges = ref([
     {
         id:1,
         number: 'Challenge 01',
-        title:'Track the missing track',
-        description:'We have been able to produce the best solution to this challenge, do not worry how it gonna look like we have alot to care about',
-        image: 'bg-[url(/img/challenges/chal-1.jpg)]'
+        title:'Introduction',
+        description:'We made a Think Tank introductory video, explicitly explaining our mission and vision.',
+        image: 'bg-[url(/img/challenges/chal-1.jpg)]',
+        link:'https://youtu.be/xSXK7ps0uaA?feature=shared'
     },
     {
         id:2,
         number: 'Challenge 02',
-        title:'We are here for Good',
-        description:'We have been able to produce the best solution to this challenge, do not worry how it gonna look like we have alot to care about',
-        image: 'bg-[url(/img/challenges/chal-2.jpg)]'
+        title:'Discover Africa',
+        description:'We made a video story of a brilliant electrical engineer who solves the problem of lack of electricity in one of the villages in Africa.',
+        image: 'bg-[url(/img/challenges/chal-2.jpg)]',
+        link:'https://youtu.be/TMqmmfIIzqI?feature=shared',
     },
     {
         id:3,
         number: 'Challenge 03',
-        title:'Dark appears in the absence of light',
-        description:'We have been able to produce the best solution to this challenge, do not worry how it gonna look like we have alot to care about',
-        image: 'bg-[url(/img/challenges/chal-3.jpg)]'
+        title:'Help Lab',
+        description:'We collaborated with RBC in blood donation, giving blood to save lives.',
+        image: 'bg-[url(/img/challenges/chal-3.jpg)]',
+        link:'https://youtu.be/QFQJgGj7EC4?feature=shared',
     },
     {
         id: 4,
         number: 'Challenge 04',
-        title:'Nothing heals past like time',
-        description:'We have been able to produce the best solution to this challenge, do not worry how it gonna look like we have alot to care about',
-        image: 'bg-[url(/img/challenges/chal-4.jpg)]'
+        title:'Hunt for Treasure',
+        description:'We conducted an in-person interview with MTN agents, analyzing the challenges they face and how they can be solved.',
+        image: 'bg-[url(/img/challenges/chal-4.jpg)]',
+        link:'https://docs.google.com/presentation/d/1AS02EpxsGZCCjteiadgEbWHmDlNthp8bSHE4KJxjl00/edit#slide=id.gc6f889893_0_5'
     }
 ])
 const active = ref(challenges.value.length - 1)
