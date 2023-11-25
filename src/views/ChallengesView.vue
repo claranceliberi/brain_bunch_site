@@ -259,7 +259,7 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
                         <div class="challenge-solution text-slate-100"> {{ challenge.description }} </div>
                         <div class="text-white flex items-center space-x-6">
                             <div class="bookmark"><button class="bg-yellow-400 w-10 h-10 flex items-center justify-center rounded-full text-2xl"><ion-icon name="bookmark-outline"></ion-icon></button></div>
-                            <div class="link"><a class="rounded-full px-4 py-2 border border-white" :href="challenge.link.url" target="_blank"> Open {{ challenge.link.type }}</a></div>
+                            <div class="link"><a :href="challenge.link.url" target="_blank"> <button class="border border-white rounded-full py-2 px-4">Open {{ challenge.link.type }}</button></a></div>
                         </div>
                     </div>
                </template>
@@ -280,10 +280,10 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
                         </template>
 
                     </div>
-                    <div class="challenges-progress flex items-center space-x-4 pl-20 pr-5">
-                            <div class="button text-white text-5xl  space-x-2">
+                    <div class="challenges-progress flex items-center space-x-4 pl-20 pr-5 pt-6">
+                            <div class="button text-white text-3xl  space-x-2">
                                 <!-- <button class="prev" @click="goToPrevSlide"> <ion-icon name="chevron-back-circle-outline"></ion-icon> </button> -->
-                                <button class="next" @click="goToNextSlide"> <ion-icon name="chevron-forward-circle-outline"></ion-icon> </button>
+                                <button class="next border border-white rounded-full w-12 h-12 flex items-center justify-center" @click="goToNextSlide"> <ion-icon name="chevron-forward-outline"></ion-icon> </button>
                             </div>
                             <div class="progress flex-1">
                                 <div class="progress-bar w-full h-1 bg-white rounded-full">
