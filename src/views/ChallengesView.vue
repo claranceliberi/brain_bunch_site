@@ -290,6 +290,9 @@ imageCover.classList.add('w-full', 'h-full', 'top-0', 'left-0', 'z-0','rounded-n
                                     <div class="progress-inner-bar bg-yellow-300 h-full"></div>
                                 </div>
                             </div>
+                            <div class="text-5xl text-white">
+                                <span>0{{activeChallenge.id}}</span>
+                            </div>
                         </div> 
                     </div>
             </div>
