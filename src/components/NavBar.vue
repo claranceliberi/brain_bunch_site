@@ -44,6 +44,7 @@ function handleNav(isOpen: boolean){
       tl.play()
     }else{
       tl
+      .set(".navbar",{height:'100%'})
       .set(".large-nav",{zIndex:100})
       .to('.large-nav',{right:0})
       .to(".large-nav",{height:'100vh'},'-=.1')
@@ -78,7 +79,7 @@ const classes = computed(() => {
 
 </script>
 <template>
-    <div  class="navbar flex flex-col  w-[100%] h-full z-50" :class="`${classes}`">
+    <div  class="navbar flex flex-col  w-[100%] z-50" :class="`${classes}`">
       <nav class="flex justify-between items-center py-10 px-40 ">
         <div class="logo text-xl font-bold uppercase py-[10px] px-12">
           <span>Brainy Bunch</span>
